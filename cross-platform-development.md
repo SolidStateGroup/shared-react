@@ -88,7 +88,7 @@ osascript -e "tell app \"Terminal\" to do script \"cd $PROJECTDIR/../bin && sh .
 
 <img src="http://g.recordit.co/j6A8lIxu6s.gif"/>
 
-##Web and mobile Polyfilling
+## Web and mobile Polyfilling
 To help maximise the code we reuse in our common layer, there are certain web and mobile features we might want to make available on each platform so that we don't have to worry where we use them.
 
 On web we added the following react native features to our existing pollyfil:
@@ -117,7 +117,7 @@ In order to increase what we can do in our common layer, both web and mobile exp
 Even in cases that are not used by common, this is quite a good idea to keep syntax familiar between platforms.
 
 
-##Base modules
+## Base modules
 As well as sharing modules across platforms we also split some of our modules into parts that are unlikely to change, for example our main mobile stylesheet looks like this:
 
 ```
