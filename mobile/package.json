@@ -1,0 +1,29 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "android": "react-native run-android",
+    "androidDeploy": "cd ./android && ./gradlew assembleRelease && cd ../",
+    "androidInstall": "cd ./android && ./gradlew installRelease && cd ../",
+    "androidDependencies": "cd ./android & sh ./gradlew -q dependencies app:dependencies --configuration compile",
+    "common": "cd ./bin && sh common-watch.sh --f",
+    "ios": "react-native run-ios"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "react": "16.3.1",
+    "react-native": "0.55.2",
+    "react-native-globals": "^0.50.0"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.3",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
