@@ -107,7 +107,7 @@ Our dumb components are primarily concerned with how things look and rarely deal
 
 Our smart components on the other hand don't usually contain markup, they deal with data and how things work and pass those results down to dumb components as props.
 
-##Client APIs
+## Client APIs
 In order to increase what we can do in our common layer, both web and mobile expose a global API that perform similar tasks in their own way. Common code doesn't have to worry about how each platform deals with the requests, examples of this may include:
 
 - Recording analytic events when flux actions are called ```API.recordEvent(Constants.FOO_CLICKED)```
