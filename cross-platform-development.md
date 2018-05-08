@@ -6,7 +6,7 @@ The end goal here is to be in a position where you can achieve and sustain featu
 
 This guide sets out an approach to building and maintaining a codebase that sensibly maximises shared functionality across all platforms. It concentrates solely on React/React Native so that you don't get bogged down with dependencies and state management systems like Redux and Mobx.
 
-#Project structure
+# Project structure
 
 This may seem like an overly obvious place to start but it's important to set out a clear project structure with cross platform in mind so that you and your team know where everything lives.
 
