@@ -53,7 +53,7 @@ Webpack takes our js, styles and other resources and bundles them into static as
 
 Rather than going too much into detail here, our webpack configs are used in our package.json scripts to either bundle our app for development or deploy minified/cachebusted files to **/build** to be used in production.
 
-##Syncing common code between web and mobile
+## Syncing common code between web and mobile
 For this approach to work a key part is being able to sync common code so that they are usable in web and mobile and can be updated from a single location. 
 
 Since the [React Native packager doesn’t support symlinks](https://github.com/facebook/metro/issues/1) we need an alternative. Even if it did support symlinks, we needed a more **reliable** way keep the mobile common folder up to date without bloating web/mobile with dependencies such as gulp-watch. Making use of [wix's wml library](https://github.com/wix/wml) we wrote a simple bash script that launches with xcode and ensures only one intance of this is running.
