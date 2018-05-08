@@ -1,7 +1,6 @@
 import './project/polyfil';
 import './project/libs';
 import './project/api';
-import './project/project-components';
 import './styles/styles.scss';
 
 import Root from './project/routes';

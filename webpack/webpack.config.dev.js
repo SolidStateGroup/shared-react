@@ -2,7 +2,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: 'eval',
+    devtool: 'eval-source-map',
     mode: "development",
     entry: [
         'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false',

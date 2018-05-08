@@ -129,3 +129,28 @@ export default Object.assign(
     }
 );
 ```
+
+
+## Tying it all together
+Our github project [shared-react](https://github.com/SolidStateGroup/shared-react) provides a solid example of the above principles in an easy to understand way.
+
+### Web entry flow
+The entry point main.js which kicks off the following
+1 - Polyfills React Native APIs we wish to use, in our case AppState, AsyncStorage, Clipboard and NetInfo.
+2 - Our API is assigned to global scope and exposes a single function ```recordEvent(eventName)```.
+3 - Imports our main style.scss, in development this supports scss hot reloading. In production this is extracted and inserted as a css link in the html head.
+4 - Initialises the project routes defined in ```routes.js``` and renders the results within ```<div id="app"></div>```
+
+### Mobile entry flow
+The entry point index.js which kicks off the following
+1 - Polyfills any web APIs we wish to use, in our case we don't need any but in other instances we may use something such as [react-native-fetch-blob](https://github.com/joltup/react-native-fetch-blob).
+2 - Uses react-native-globals to assign components like View to global scope such as View.
+3 - Exposes a few base components such H1-H6 and Flex and initialises a global stylesheet.
+4 - Registers our ExampleScreen using AppRegistry. We don't use a router in our example like on web as there are quite a few different and popular options in React Native. 
+
+### The example application
+Our web and mobile include 1 page/screen that  store and retrieve a single field.
+
+They use an example higher order component which uses AsyncStorage to do the heavy lifting and passes down the following props:
+
+

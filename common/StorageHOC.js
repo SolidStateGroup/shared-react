@@ -17,45 +17,47 @@ export default (WrappedComponent) => {
         componentDidMount() {
             AsyncStorage.getItem(STORAGE_KEY, (err, value) => {
                 this.setState({
-                    value,
+                    value: value || "",
                     isLoading: false
                 })
-            })
-
+            });
         }
 
         onChange = (e) => {
             this.setState({value: Utils.safeParseEventValue(e)})
         };
 
-        onReset = () => {
+        reset = () => {
             this.setState({value: ""});
             API.recordEvent("Reset storage");
             AsyncStorage.removeItem(STORAGE_KEY)
         };
 
-        onSave = () => {
+        save = () => {
             const {value} = this.state;
-            this.setState({isSaving: true});
-            API.recordEvent("Save storage");
-            AsyncStorage.setItem(STORAGE_KEY, value, () => {
-                this.setState({isSaving: false})
+            this.setState({isSaving: true, success: false}, () => {
+                API.recordEvent("Save storage");
+                AsyncStorage.setItem(STORAGE_KEY, value, () => {
+                    this.setState({isSaving: false, success: true});
+                });
             });
         };
 
         render() {
-            const {isLoading, value, isSaving} = this.state,
-                {onSave, onReset, onChange} = this,
+            const {isLoading, value, isSaving, success} = this.state,
+                {save, reset, onChange} = this,
                 {instructions} = strings;
             return (
                 <WrappedComponent
+                    ref="wrappedComponent"
                     instructions={instructions}
                     isLoading={isLoading}
                     isSaving={isSaving}
                     value={value}
-                    onSave={onSave}
-                    onReset={onReset}
+                    save={save}
+                    reset={reset}
                     onChange={onChange}
+                    success={success}
                     {...this.props}
                 />
             );
