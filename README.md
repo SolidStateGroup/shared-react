@@ -52,7 +52,7 @@ This contains anything to do with the web frontend and will in no way touch anyt
 
 Webpack configs are used in our package.json scripts to either bundle our app for development or deploy minified/cachebusted files to **/build** to be used in production.
 
-##Syncing common code between web and mobile
+## Syncing common code between web and mobile
 
 running **/mobile/bin/common-watch.sh** will keep **/common** synced to **/mobile/common-mobile**. 
 This is automatically executed when running the ios project.
