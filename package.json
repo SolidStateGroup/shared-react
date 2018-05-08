@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
-    "fs-extra": "^6.0.0",
     "pollyfill-react-native": "^1.0.3",
     "promise-polyfill": "^7.1.2",
     "react": "16.3.2",
@@ -34,6 +33,7 @@
     "copy-webpack-plugin": "4.5.1",
     "css-loader": "0.23.1",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
+    "fs-extra": "^6.0.0",
     "html-loader": "0.4.3",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "2.0.0",

@@ -3,7 +3,8 @@
 A minimal setup for writing cross platform applications in React and React Native. 
 This project is the example for our blog post A sensible approach to Cross platform development with React and React Native (Link coming soon).
 
-
+# Motivations
+This provides a bare bones setup that compliments writing for web and mobile with React and React Native whilst not requiring any dependencies other than react, react-router, react-native and lodash.
 ## Web Installation 
 
 ``npm i``
@@ -28,7 +29,6 @@ If you've never ran a React Native project before check the [Building Projects w
 
 ## Running ios 
 ```cd ./mobile && react-native run-ios```
-
 
 ## Project structure
 
