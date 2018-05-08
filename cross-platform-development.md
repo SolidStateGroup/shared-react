@@ -28,7 +28,6 @@ With these rules in mind , some examples of of common modules include:
  - Application business logic.
  - Higher order components.
 
-
 **/mobile**
 
 This is the root of your React Native project, to keep things tidy we store our app structure under **/mobile/app**
@@ -76,8 +75,6 @@ fi
   wml add ../../src/js/common ../common
   wml start
 ```
-
-<img src="http://prntscr.com/j96ouw"/>
 
 We add a script phase to our xcode build
 
@@ -129,7 +126,6 @@ export default Object.assign(
     }
 );
 ```
-
 
 ## Tying it all together
 Our github project [shared-react](https://github.com/SolidStateGroup/shared-react) provides a solid example of the above principles in an easy to understand way.
