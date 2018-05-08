@@ -49,16 +49,15 @@ export default (WrappedComponent) => {
                 {instructions} = strings;
             return (
                 <WrappedComponent
-                    ref="wrappedComponent"
-                    instructions={instructions}
-                    isLoading={isLoading}
-                    isSaving={isSaving}
-                    value={value}
-                    save={save}
-                    reset={reset}
-                    onChange={onChange}
-                    success={success}
-                    {...this.props}
+                    instructions={instructions} //Instructions to the user
+                    isLoading={isLoading} //Whether the storage is loading
+                    isSaving={isSaving} //Whether the storage is saving
+                    value={value} //The current value entered for the storage
+                    save={save} //A function to save the current value
+                    reset={reset} //A function to reset the stored value
+                    onChange={onChange} //A function to call when the text value changes
+                    success={success} //Determines whether saving was successful
+                    {...this.props} //Pass all other props
                 />
             );
         }

@@ -144,13 +144,29 @@ The entry point main.js which kicks off the following
 ### Mobile entry flow
 The entry point index.js which kicks off the following
 1 - Polyfills any web APIs we wish to use, in our case we don't need any but in other instances we may use something such as [react-native-fetch-blob](https://github.com/joltup/react-native-fetch-blob).
-2 - Uses react-native-globals to assign components like View to global scope such as View.
-3 - Exposes a few base components such H1-H6 and Flex and initialises a global stylesheet.
-4 - Registers our ExampleScreen using AppRegistry. We don't use a router in our example like on web as there are quite a few different and popular options in React Native. 
+2 - Our API is assigned to global scope and exposes a single function ```recordEvent(eventName)```.2 - Our API is assigned to global scope and exposes a single function ```recordEvent(eventName)```.
+3 - Uses react-native-globals to assign components like View to global scope such as View.
+4 - Exposes a few base components such H1-H6 and Flex and initialises a global stylesheet.
+5 - Registers our ExampleScreen using AppRegistry. We don't use a router in our example like on web as there are quite a few different and popular options in React Native. 
 
 ### The example application
 Our web and mobile include 1 page/screen that  store and retrieve a single field.
 
 They use an example higher order component which uses AsyncStorage to do the heavy lifting and passes down the following props:
 
+```
+   <WrappedComponent
+                    instructions={instructions} //Instructions to the user
+                    isLoading={isLoading} //Whether the storage is loading
+                    isSaving={isSaving} //Whether the storage is saving
+                    value={value} //The current value entered for the storage
+                    save={save} //A function to save the current value
+                    reset={reset} //A function to reset the stored value
+                    onChange={onChange} //A function to call when the text value changes
+                    success={success} //Determines whether saving was successful
+                    {...this.props} //Pass all other props
+                />
+```
 
+With this we create a simple form on web and mobile, our higher order component uses our cross platform api to record events,
+<img src="http://g.recordit.co/t1bqzCFFfe.gif"/>
