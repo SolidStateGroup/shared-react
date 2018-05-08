@@ -18,6 +18,11 @@ This provides a bare bones setup that compliments writing for web and mobile wit
 
 ```npm start```
 
+This will deploy files to /build and splits your web code into 3 cache busted bundles
+- Vendors: your node_modules.
+- Components: your pages and app components.
+- Main: anything else non presentational.
+
 ## Mobile Installation 
 If you've never ran a React Native project before check the [Building Projects with Native Code guide](https://facebook.github.io/react-native/docs/getting-started.html).
 
