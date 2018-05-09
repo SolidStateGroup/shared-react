@@ -6,7 +6,7 @@ The end goal here is to be in a position where you can achieve and sustain featu
 
 This guide sets out an approach to building and maintaining a codebase that sensibly maximises shared functionality across all platforms. It concentrates solely on React/React Native so that you don't get bogged down with dependencies and state management systems like Redux and Mobx.
 
-#Project structure
+# Project structure
 
 This may seem like an overly obvious place to start but it's important to set out a clear project structure with cross platform in mind so that you and your team know where everything lives.
 
@@ -27,7 +27,6 @@ With these rules in mind , some examples of of common modules include:
  - Common utility functions.
  - Application business logic.
  - Higher order components.
-
 
 **/mobile**
 
@@ -53,7 +52,7 @@ Webpack takes our js, styles and other resources and bundles them into static as
 
 Rather than going too much into detail here, our webpack configs are used in our package.json scripts to either bundle our app for development or deploy minified/cachebusted files to **/build** to be used in production.
 
-##Syncing common code between web and mobile
+## Syncing common code between web and mobile
 For this approach to work a key part is being able to sync common code so that they are usable in web and mobile and can be updated from a single location. 
 
 Since the [React Native packager doesn’t support symlinks](https://github.com/facebook/metro/issues/1) we need an alternative. Even if it did support symlinks, we needed a more **reliable** way keep the mobile common folder up to date without bloating web/mobile with dependencies such as gulp-watch. Making use of [wix's wml library](https://github.com/wix/wml) we wrote a simple bash script that launches with xcode and ensures only one intance of this is running.
@@ -77,8 +76,6 @@ fi
   wml start
 ```
 
-<img src="http://prntscr.com/j96ouw"/>
-
 We add a script phase to our xcode build
 
 ```
@@ -88,7 +85,7 @@ osascript -e "tell app \"Terminal\" to do script \"cd $PROJECTDIR/../bin && sh .
 
 <img src="http://g.recordit.co/j6A8lIxu6s.gif"/>
 
-##Web and mobile Polyfilling
+## Web and mobile Polyfilling
 To help maximise the code we reuse in our common layer, there are certain web and mobile features we might want to make available on each platform so that we don't have to worry where we use them.
 
 On web we added the following react native features to our existing pollyfil:
@@ -107,7 +104,7 @@ Our dumb components are primarily concerned with how things look and rarely deal
 
 Our smart components on the other hand don't usually contain markup, they deal with data and how things work and pass those results down to dumb components as props.
 
-##Client APIs
+## Client APIs
 In order to increase what we can do in our common layer, both web and mobile expose a global API that perform similar tasks in their own way. Common code doesn't have to worry about how each platform deals with the requests, examples of this may include:
 
 - Recording analytic events when flux actions are called ```API.recordEvent(Constants.FOO_CLICKED)```
@@ -117,7 +114,7 @@ In order to increase what we can do in our common layer, both web and mobile exp
 Even in cases that are not used by common, this is quite a good idea to keep syntax familiar between platforms.
 
 
-##Base modules
+## Base modules
 As well as sharing modules across platforms we also split some of our modules into parts that are unlikely to change, for example our main mobile stylesheet looks like this:
 
 ```
@@ -129,7 +126,6 @@ export default Object.assign(
     }
 );
 ```
-
 
 ## Tying it all together
 Our github project [shared-react](https://github.com/SolidStateGroup/shared-react) provides a solid example of the above principles in an easy to understand way.
