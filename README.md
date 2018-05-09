@@ -9,7 +9,11 @@ This provides a bare bones setup that compliments writing for web and mobile wit
 
 ``npm i``
 
+
 ## Web Development
+You'll need nodemon to run in development mode
+```npm i nodemon -g```
+
 
 ```npm run dev```
 
@@ -30,7 +34,6 @@ If you've never ran a React Native project before check the [Building Projects w
 
 ## Running android 
 ```cd ./mobile && react-native run-android```
-
 
 ## Running ios 
 ```cd ./mobile && react-native run-ios```
