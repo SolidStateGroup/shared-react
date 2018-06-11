@@ -6,71 +6,33 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const src = path.join(__dirname, '../web') + '/';
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     devtool: 'source-map',
-
-    mode: "production",
 
     entry: {
         main: './web/main.js'
     },
     optimization: { //chunk bundle into Libraries, App JS and dumb components
-        splitChunks: {
-            chunks: 'all',
-            minSize: 0,
-            maxAsyncRequests: Infinity,
-            maxInitialRequests: Infinity,
-            name: true,
-            cacheGroups: {
-                default: {
-                    name: 'main',
-                    chunks: 'async',
-                    minSize: 30000,
-                    minChunks: 2,
-                    maxAsyncRequests: 5,
-                    maxInitialRequests: 3,
-                    priority: -20,
-                    test: function (module) {
-                        var test = module.resource && module.resource.indexOf('node_modules') == -1;
-                        test && console.log("Main > " + module.resource)
-                        return test;
-                    },
-                    reuseExistingChunk: true,
-                },
-                vendors: {
-                    name: 'vendors',
-                    enforce: true,
-                    test: function (module) {
-                        var test = module.resource && module.resource.indexOf('node_modules') != -1;
-                        return test;
-                    },
-                    priority: -10,
-                    reuseExistingChunk: true,
-                },
-                components: {
-                    name: 'components',
-                    enforce: true,
-                    test: function (module) {
-                        var test = module.resource && module.resource.indexOf('node_modules') == -1
-                            && (
-                                module.resource && module.resource.indexOf('web/pages') != -1 ||
-                                module.resource && module.resource.indexOf('web/components') != -1
-                            );
-                        test && console.log("Components > " + module.resource)
-                        return test;
-                    },
-                    priority: -10,
-                    reuseExistingChunk: true,
-                },
-            },
-        },
+        minimizer: [
+            new UglifyJSPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true, // set to true if you want JS source maps
+                extractComments:true,
+                uglifyOptions: {
+                    compress: {
+                        drop_console: true,
+                    }
+                }
+            })
+        ],
     },
     output: {
         path: path.join(__dirname, '../build'),
-        filename: '[name].[hash].js'
+        filename: '[name].[hash].js',
+        publicPath: '/'
     },
 
     plugins: require('./plugins')
@@ -78,14 +40,11 @@ module.exports = {
                 //Clear out build folder
                 new CleanWebpackPlugin(['build'], {root: path.join(__dirname, '../')}),
 
-                // Reduce lodash size
-                new LodashModuleReplacementPlugin(),
-
                 //reduce filesize
                 new webpack.optimize.OccurrenceOrderPlugin(),
 
                 //pull inline styles into cachebusted file
-                new ExtractTextPlugin({filename: "/style.[hash].css", allChunks: true}),
+                new ExtractTextPlugin({filename: "style.[hash].css", allChunks: true}),
 
             ]
         )
@@ -96,6 +55,7 @@ module.exports = {
                     template: './web/' + page + '.handlebars', //template to use
                     "assets": { //add these script/link tags
                         "client": "/[hash].js",
+                        "style": "style.[hash].css"
                     }
                 }
             )
