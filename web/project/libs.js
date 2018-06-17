@@ -23,4 +23,13 @@ window.RequiredString = PropTypes.string.isRequired;
 window.RequiredNode = PropTypes.node.isRequired;
 window.RequiredElement = PropTypes.node.isRequired;
 
+const each = require('lodash/each');
+const filter = require('lodash/filter');
+const find = require('lodash/find');
+const partial = require('lodash/partial');
+const findIndex = require('lodash/findIndex');
+const range = require('lodash/range');
+const map = require('lodash/map');
+const cloneDeep = require('lodash/cloneDeep');
+const keyBy = require('lodash/keyBy');
 window._ = {each, filter, find, partial, findIndex, range, map,cloneDeep,keyBy};
