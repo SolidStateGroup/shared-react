@@ -4,6 +4,7 @@
   "description": "An example cross platform application",
   "main": "index.js",
   "scripts": {
+    "train": "tensorflowjs_converter --input_format keras ./model.hdf5 ./web/model",
     "env_prod": "ENV=prod node ./bin/env.js",
     "env_dev": "ENV=dev node ./bin/env.js",
     "start": "npm run env_prod && npm run bundle && NODE_ENV=production node ./server",
@@ -11,6 +12,7 @@
     "bundle": "node node_modules/.bin/webpack -p --progress --config ./webpack/webpack.config.prod.js"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^0.11.6",
     "bootstrap": "4.0.0-alpha.6",
     "pollyfill-react-native": "^1.0.3",
     "promise-polyfill": "^7.1.2",

@@ -4,7 +4,6 @@ module.exports = [
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
     },
-    {test: /\.json$/, loader: "json-loader"},
     {
         test: /\.html$/,
         use: 'html-loader?attrs[]=source:src&attrs[]=img:src'
