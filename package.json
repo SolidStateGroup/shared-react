@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "train": "tensorflowjs_converter --input_format keras ./model.hdf5 ./web/model",
-    "pb_train": "tensorflowjs_converter --input_format tf_frozen_model --output_node_names='final_result' ./output_graph.pb ./web/model",
+    "detect_train": "tensorflowjs_converter --input_format tf_frozen_model --output_node_names='embeddings' ./20180402-114759.pb ./web/detect-model",
     "env_prod": "ENV=prod node ./bin/env.js",
     "env_dev": "ENV=dev node ./bin/env.js",
     "start": "npm run env_prod && npm run bundle && NODE_ENV=production node ./server",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@tensorflow/tfjs": "^0.11.6",
     "bootstrap": "4.0.0-alpha.6",
+    "chart.js": "^2.7.2",
     "pollyfill-react-native": "^1.0.3",
     "promise-polyfill": "^7.1.2",
     "react": "16.3.2",

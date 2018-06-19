@@ -4,6 +4,7 @@
 import * as tf from '@tensorflow/tfjs';
 import React, {Component, PropTypes} from 'react';
 import Recorder from '../../Recorder';
+import Chart from '../../Chart';
 
 // Face tracking only seems to work with a larger video (they use 320x240)
 const CANVAS_WIDTH = 320;
@@ -32,6 +33,8 @@ let model = tf.loadModel(path).then((res) => {
 
 const IMAGENET_CLASSES = {0:'angry',1:'disgust',2:'fear',3:'happy',
     4:'sad',5:'surprise',6:'neutral'};
+
+var emotionData;
 const getTopKClassesFromPrediction = (logits, topK) => {
     if (!logits.data)
         return Promise.resolve(null)
@@ -41,6 +44,7 @@ const getTopKClassesFromPrediction = (logits, topK) => {
             for (let i = 0; i < values.length; i++) {
                 valuesAndIndices.push({value: values[i], index: i});
             }
+            emotionData = valuesAndIndices.slice(0);
             valuesAndIndices.sort((a, b) => {
                 return b.value - a.value;
             });
@@ -114,8 +118,46 @@ const ExamplePage = class extends Component {
             })
     };
 
+    componentDidMount() {
+
+    }
+
     render() {
         const {ready} = this.state;
+        var data = [];
+        if (emotionData) {
+            for (var i = 0; i < 7; i++) {
+                data.push(emotionData[i].value);
+            }
+        }
+        const barChartData = {
+            labels: ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral'],
+            datasets: [{
+                data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(192, 192, 192, 0.2)',
+                ],
+            }]
+        }
+        const barChartOptions = {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 1
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
         return (
             <div className="container">
                 <Recorder
@@ -130,6 +172,7 @@ const ExamplePage = class extends Component {
                 />
                 <canvas width={CANVAS_WIDTH}
                     height={CANVAS_HEIGHT} ref={c => this.debugCanvas = c} />
+                <Chart type="horizontalBar" data={barChartData} options={barChartOptions} width="400" height="400" />
             </div>
         );
     }
