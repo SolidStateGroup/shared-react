@@ -5,6 +5,9 @@ import * as tf from '@tensorflow/tfjs';
 import React, {Component, PropTypes} from 'react';
 import Recorder from '../../Recorder';
 
+const CANVAS_WIDTH = 48;
+const CANVAS_HEIGHT = 48;
+
 const path = document.location.origin + "/model/model.json";
 let modelReady = false;
 let model = tf.loadModel(path).then((res) => {
@@ -26,7 +29,7 @@ let model = tf.loadModel(path).then((res) => {
     })
 });
 
-const IMAGENET_CLASSES = {0:'angry',1:'disgust',2:'sad',3:'happy',
+const IMAGENET_CLASSES = {0:'angry',1:'disgust',2:'fear',3:'happy',
     4:'sad',5:'surprise',6:'neutral'};
 const getTopKClassesFromPrediction = (logits, topK) => {
     if (!logits.data)
@@ -77,24 +80,28 @@ const ExamplePage = class extends Component {
     }
 
     onData = (canvas, IMAGE_WIDTH, IMAGE_HEIGHT) => {
-        const img = tf.fromPixels(canvas);
+        const preview = tf.fromPixels(canvas);
+        const normalized = preview.toFloat().div(tf.scalar(255));
 
+        // TODO could use model.inputLayers[0].batchInputShape here to get width and height
+        // // Resize the image to
+        // let resized = normalized;
+        // if (img.shape[0] !== 48 || img.shape[1] !== 48) {
+        //     const alignCorners = true;
+        //     resized = tf.image.resizeBilinear(
+        //         normalized, [48, 48], alignCorners);
+        // }
 
-        // Normalize the image from [0, 255] to [-1, 1].
-        const normalized = img.toFloat()
-            .sub(this.normalizationOffset)
-            .div(this.normalizationOffset);
+        const greyscale_image = normalized.mean(2);
+        const final_image = greyscale_image.expandDims(2);
 
-        // Resize the image to
-        let resized = normalized;
-        if (img.shape[0] !== 48 || img.shape[1] !== 48) {
-            const alignCorners = true;
-            resized = tf.image.resizeBilinear(
-                normalized, [48, 48], alignCorners);
+        // TODO could use model.inputLayers[0].batchInputShape here (converting null to -1)
+        // Reshape to fit batch input shape so we can pass it to predict.
+        const batched = final_image.reshape([-1,CANVAS_WIDTH,CANVAS_HEIGHT,1]);
+
+        if (this.debugCanvas) {
+            tf.toPixels(final_image, this.debugCanvas);
         }
-
-        // Reshape to a single-element batch so we can pass it to predict.
-        const batched = resized.reshape([-1,48,48,1]);
 
         const prediction = model.predict(batched);
 
@@ -111,8 +118,8 @@ const ExamplePage = class extends Component {
         return (
             <div className="container">
                 <Recorder
-                    captureWidth={48}
-                    captureHeight={48}
+                    captureWidth={CANVAS_WIDTH}
+                    captureHeight={CANVAS_HEIGHT}
                     ready={ready}
                     onData={this.onData}
                     captureRate={100}
@@ -120,6 +127,8 @@ const ExamplePage = class extends Component {
                     onReady={this.onReady}
                     start={true}
                 />
+                <canvas width={CANVAS_WIDTH}
+                    height={CANVAS_HEIGHT} ref={c => this.debugCanvas = c} />
             </div>
         );
     }

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "train": "tensorflowjs_converter --input_format keras ./model.hdf5 ./web/model",
+    "pb_train": "tensorflowjs_converter --input_format tf_frozen_model --output_node_names='final_result' ./output_graph.pb ./web/model",
     "env_prod": "ENV=prod node ./bin/env.js",
     "env_dev": "ENV=dev node ./bin/env.js",
     "start": "npm run env_prod && npm run bundle && NODE_ENV=production node ./server",

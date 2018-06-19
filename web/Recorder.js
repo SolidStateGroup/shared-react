@@ -67,7 +67,7 @@ export default class TheComponent extends Component {
             // Make a copy of the current frame in the video on the canvas.
             context.drawImage(video, 0, 0, width, height);
             this.props.onData && this.props.onData(canvas, width, height);
-        })
+        }, this.props.captureRate)
     };
 
     start = () => {

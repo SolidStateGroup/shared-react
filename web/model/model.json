@@ -1,0 +1,2733 @@
+{
+  "modelTopology": {
+    "training_config": {
+      "metrics": [
+        "accuracy"
+      ],
+      "loss": "categorical_crossentropy",
+      "optimizer_config": {
+        "class_name": "Adam",
+        "config": {
+          "beta_1": 0.8999999761581421,
+          "epsilon": 1e-08,
+          "beta_2": 0.9990000128746033,
+          "lr": 1.0000000656873453e-05,
+          "decay": 0.0
+        }
+      },
+      "loss_weights": null,
+      "sample_weight_mode": null
+    },
+    "keras_version": "2.0.5",
+    "model_config": {
+      "class_name": "Model",
+      "config": {
+        "layers": [
+          {
+            "class_name": "InputLayer",
+            "config": {
+              "dtype": "float32",
+              "batch_input_shape": [
+                null,
+                48,
+                48,
+                1
+              ],
+              "name": "input_1",
+              "sparse": false
+            },
+            "inbound_nodes": [],
+            "name": "input_1"
+          },
+          {
+            "class_name": "Conv2D",
+            "config": {
+              "kernel_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "bias_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "trainable": true,
+              "data_format": "channels_last",
+              "padding": "valid",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "kernel_regularizer": {
+                "class_name": "L1L2",
+                "config": {
+                  "l2": 0.009999999776482582,
+                  "l1": 0.0
+                }
+              },
+              "filters": 5,
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "use_bias": false,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "conv2d_1"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "input_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "conv2d_1"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_1",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "conv2d_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_1"
+          },
+          {
+            "class_name": "Activation",
+            "config": {
+              "activation": "relu",
+              "trainable": true,
+              "name": "activation_1"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "activation_1"
+          },
+          {
+            "class_name": "Conv2D",
+            "config": {
+              "kernel_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "bias_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "trainable": true,
+              "data_format": "channels_last",
+              "padding": "valid",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "kernel_regularizer": {
+                "class_name": "L1L2",
+                "config": {
+                  "l2": 0.009999999776482582,
+                  "l1": 0.0
+                }
+              },
+              "filters": 8,
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "use_bias": false,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "conv2d_2"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "activation_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "conv2d_2"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_2",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "conv2d_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_2"
+          },
+          {
+            "class_name": "Activation",
+            "config": {
+              "activation": "relu",
+              "trainable": true,
+              "name": "activation_2"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "activation_2"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 16,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_1"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "activation_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_1"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_4",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_4"
+          },
+          {
+            "class_name": "Activation",
+            "config": {
+              "activation": "relu",
+              "trainable": true,
+              "name": "activation_3"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_4",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "activation_3"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 16,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_2"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "activation_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_2"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_5",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_5"
+          },
+          {
+            "class_name": "Conv2D",
+            "config": {
+              "kernel_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "bias_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "trainable": true,
+              "data_format": "channels_last",
+              "padding": "same",
+              "strides": [
+                2,
+                2
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "kernel_regularizer": null,
+              "filters": 16,
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "use_bias": false,
+              "activation": "linear",
+              "kernel_size": [
+                1,
+                1
+              ],
+              "name": "conv2d_3"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "activation_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "conv2d_3"
+          },
+          {
+            "class_name": "MaxPooling2D",
+            "config": {
+              "name": "max_pooling2d_1",
+              "trainable": true,
+              "data_format": "channels_last",
+              "pool_size": [
+                3,
+                3
+              ],
+              "padding": "same",
+              "strides": [
+                2,
+                2
+              ]
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_5",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "max_pooling2d_1"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_3",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "conv2d_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_3"
+          },
+          {
+            "class_name": "Add",
+            "config": {
+              "trainable": true,
+              "name": "add_1"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "max_pooling2d_1",
+                  0,
+                  0,
+                  {}
+                ],
+                [
+                  "batch_normalization_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "add_1"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 32,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_3"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "add_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_3"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_7",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_7"
+          },
+          {
+            "class_name": "Activation",
+            "config": {
+              "activation": "relu",
+              "trainable": true,
+              "name": "activation_4"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_7",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "activation_4"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 32,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_4"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "activation_4",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_4"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_8",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_4",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_8"
+          },
+          {
+            "class_name": "Conv2D",
+            "config": {
+              "kernel_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "bias_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "trainable": true,
+              "data_format": "channels_last",
+              "padding": "same",
+              "strides": [
+                2,
+                2
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "kernel_regularizer": null,
+              "filters": 32,
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "use_bias": false,
+              "activation": "linear",
+              "kernel_size": [
+                1,
+                1
+              ],
+              "name": "conv2d_4"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "add_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "conv2d_4"
+          },
+          {
+            "class_name": "MaxPooling2D",
+            "config": {
+              "name": "max_pooling2d_2",
+              "trainable": true,
+              "data_format": "channels_last",
+              "pool_size": [
+                3,
+                3
+              ],
+              "padding": "same",
+              "strides": [
+                2,
+                2
+              ]
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_8",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "max_pooling2d_2"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_6",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "conv2d_4",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_6"
+          },
+          {
+            "class_name": "Add",
+            "config": {
+              "trainable": true,
+              "name": "add_2"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "max_pooling2d_2",
+                  0,
+                  0,
+                  {}
+                ],
+                [
+                  "batch_normalization_6",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "add_2"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 64,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_5"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "add_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_5"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_10",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_5",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_10"
+          },
+          {
+            "class_name": "Activation",
+            "config": {
+              "activation": "relu",
+              "trainable": true,
+              "name": "activation_5"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_10",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "activation_5"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 64,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_6"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "activation_5",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_6"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_11",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_6",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_11"
+          },
+          {
+            "class_name": "Conv2D",
+            "config": {
+              "kernel_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "bias_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "trainable": true,
+              "data_format": "channels_last",
+              "padding": "same",
+              "strides": [
+                2,
+                2
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "kernel_regularizer": null,
+              "filters": 64,
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "use_bias": false,
+              "activation": "linear",
+              "kernel_size": [
+                1,
+                1
+              ],
+              "name": "conv2d_5"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "add_2",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "conv2d_5"
+          },
+          {
+            "class_name": "MaxPooling2D",
+            "config": {
+              "name": "max_pooling2d_3",
+              "trainable": true,
+              "data_format": "channels_last",
+              "pool_size": [
+                3,
+                3
+              ],
+              "padding": "same",
+              "strides": [
+                2,
+                2
+              ]
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_11",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "max_pooling2d_3"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_9",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "conv2d_5",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_9"
+          },
+          {
+            "class_name": "Add",
+            "config": {
+              "trainable": true,
+              "name": "add_3"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "max_pooling2d_3",
+                  0,
+                  0,
+                  {}
+                ],
+                [
+                  "batch_normalization_9",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "add_3"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 128,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_7"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "add_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_7"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_13",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_7",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_13"
+          },
+          {
+            "class_name": "Activation",
+            "config": {
+              "activation": "relu",
+              "trainable": true,
+              "name": "activation_6"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_13",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "activation_6"
+          },
+          {
+            "class_name": "SeparableConv2D",
+            "config": {
+              "use_bias": false,
+              "depthwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "trainable": true,
+              "bias_regularizer": null,
+              "pointwise_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "filters": 128,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "depthwise_constraint": null,
+              "pointwise_constraint": null,
+              "data_format": "channels_last",
+              "pointwise_regularizer": null,
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "depth_multiplier": 1,
+              "depthwise_regularizer": null,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "separable_conv2d_8"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "activation_6",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "separable_conv2d_8"
+          },
+          {
+            "class_name": "Conv2D",
+            "config": {
+              "kernel_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "bias_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "trainable": true,
+              "data_format": "channels_last",
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "kernel_regularizer": null,
+              "filters": 128,
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "use_bias": false,
+              "activation": "linear",
+              "kernel_size": [
+                1,
+                1
+              ],
+              "name": "conv2d_6"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "add_3",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "conv2d_6"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_14",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "separable_conv2d_8",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_14"
+          },
+          {
+            "class_name": "BatchNormalization",
+            "config": {
+              "beta_constraint": null,
+              "gamma_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "moving_mean_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "name": "batch_normalization_12",
+              "epsilon": 0.001,
+              "trainable": true,
+              "moving_variance_initializer": {
+                "class_name": "Ones",
+                "config": {}
+              },
+              "beta_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "scale": true,
+              "axis": -1,
+              "gamma_regularizer": null,
+              "gamma_constraint": null,
+              "beta_regularizer": null,
+              "momentum": 0.99,
+              "center": true
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "conv2d_6",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "batch_normalization_12"
+          },
+          {
+            "class_name": "Add",
+            "config": {
+              "trainable": true,
+              "name": "add_4"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "batch_normalization_14",
+                  0,
+                  0,
+                  {}
+                ],
+                [
+                  "batch_normalization_12",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "add_4"
+          },
+          {
+            "class_name": "Conv2D",
+            "config": {
+              "kernel_initializer": {
+                "class_name": "VarianceScaling",
+                "config": {
+                  "distribution": "uniform",
+                  "seed": null,
+                  "mode": "fan_avg",
+                  "scale": 1.0
+                }
+              },
+              "bias_regularizer": null,
+              "kernel_constraint": null,
+              "bias_constraint": null,
+              "activity_regularizer": null,
+              "trainable": true,
+              "data_format": "channels_last",
+              "padding": "same",
+              "strides": [
+                1,
+                1
+              ],
+              "dilation_rate": [
+                1,
+                1
+              ],
+              "kernel_regularizer": null,
+              "filters": 7,
+              "bias_initializer": {
+                "class_name": "Zeros",
+                "config": {}
+              },
+              "use_bias": true,
+              "activation": "linear",
+              "kernel_size": [
+                3,
+                3
+              ],
+              "name": "conv2d_7"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "add_4",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "conv2d_7"
+          },
+          {
+            "class_name": "GlobalAveragePooling2D",
+            "config": {
+              "trainable": true,
+              "data_format": "channels_last",
+              "name": "global_average_pooling2d_1"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "conv2d_7",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "global_average_pooling2d_1"
+          },
+          {
+            "class_name": "Activation",
+            "config": {
+              "activation": "softmax",
+              "trainable": true,
+              "name": "predictions"
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "global_average_pooling2d_1",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ],
+            "name": "predictions"
+          }
+        ],
+        "output_layers": [
+          [
+            "predictions",
+            0,
+            0
+          ]
+        ],
+        "input_layers": [
+          [
+            "input_1",
+            0,
+            0
+          ]
+        ],
+        "name": "model_1"
+      }
+    },
+    "backend": "tensorflow"
+  },
+  "weightsManifest": [
+    {
+      "paths": [
+        "group1-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "name": "batch_normalization_1/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "name": "batch_normalization_1/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "name": "batch_normalization_1/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            5
+          ],
+          "name": "batch_normalization_1/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group2-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_10/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_10/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_10/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_10/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group3-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_11/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_11/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_11/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_11/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group4-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_12/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_12/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_12/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_12/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group5-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_13/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_13/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_13/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_13/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group6-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_14/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_14/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_14/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            128
+          ],
+          "name": "batch_normalization_14/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group7-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            8
+          ],
+          "name": "batch_normalization_2/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            8
+          ],
+          "name": "batch_normalization_2/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            8
+          ],
+          "name": "batch_normalization_2/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            8
+          ],
+          "name": "batch_normalization_2/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group8-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_3/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_3/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_3/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_3/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group9-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_4/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_4/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_4/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_4/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group10-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_5/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_5/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_5/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            16
+          ],
+          "name": "batch_normalization_5/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group11-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_6/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_6/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_6/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_6/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group12-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_7/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_7/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_7/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_7/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group13-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_8/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_8/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_8/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            32
+          ],
+          "name": "batch_normalization_8/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group14-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_9/gamma"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_9/beta"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_9/moving_mean"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            64
+          ],
+          "name": "batch_normalization_9/moving_variance"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group15-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            1,
+            5
+          ],
+          "name": "conv2d_1/kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group16-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            5,
+            8
+          ],
+          "name": "conv2d_2/kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group17-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            8,
+            16
+          ],
+          "name": "conv2d_3/kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group18-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            16,
+            32
+          ],
+          "name": "conv2d_4/kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group19-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            32,
+            64
+          ],
+          "name": "conv2d_5/kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group20-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            64,
+            128
+          ],
+          "name": "conv2d_6/kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group21-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            128,
+            7
+          ],
+          "name": "conv2d_7/kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            7
+          ],
+          "name": "conv2d_7/bias"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group22-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            8,
+            1
+          ],
+          "name": "separable_conv2d_1/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            8,
+            16
+          ],
+          "name": "separable_conv2d_1/pointwise_kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group23-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            16,
+            1
+          ],
+          "name": "separable_conv2d_2/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            16,
+            16
+          ],
+          "name": "separable_conv2d_2/pointwise_kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group24-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            16,
+            1
+          ],
+          "name": "separable_conv2d_3/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            16,
+            32
+          ],
+          "name": "separable_conv2d_3/pointwise_kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group25-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            32,
+            1
+          ],
+          "name": "separable_conv2d_4/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            32,
+            32
+          ],
+          "name": "separable_conv2d_4/pointwise_kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group26-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            32,
+            1
+          ],
+          "name": "separable_conv2d_5/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            32,
+            64
+          ],
+          "name": "separable_conv2d_5/pointwise_kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group27-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            64,
+            1
+          ],
+          "name": "separable_conv2d_6/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            64,
+            64
+          ],
+          "name": "separable_conv2d_6/pointwise_kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group28-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            64,
+            1
+          ],
+          "name": "separable_conv2d_7/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            64,
+            128
+          ],
+          "name": "separable_conv2d_7/pointwise_kernel"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "group29-shard1of1"
+      ],
+      "weights": [
+        {
+          "dtype": "float32",
+          "shape": [
+            3,
+            3,
+            128,
+            1
+          ],
+          "name": "separable_conv2d_8/depthwise_kernel"
+        },
+        {
+          "dtype": "float32",
+          "shape": [
+            1,
+            1,
+            128,
+            128
+          ],
+          "name": "separable_conv2d_8/pointwise_kernel"
+        }
+      ]
+    }
+  ]
+}

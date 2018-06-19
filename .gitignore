@@ -6,3 +6,8 @@ build/
 *.log*
 npm-debug.log
 mobile/common/
+
+# Python venv
+.Python
+lib/python2.7/
+include/
