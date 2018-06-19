@@ -5,8 +5,9 @@ import * as tf from '@tensorflow/tfjs';
 import React, {Component, PropTypes} from 'react';
 import Recorder from '../../Recorder';
 
-const CANVAS_WIDTH = 48;
-const CANVAS_HEIGHT = 48;
+// Face tracking only seems to work with a larger video (they use 320x240)
+const CANVAS_WIDTH = 320;
+const CANVAS_HEIGHT = 240;
 
 const path = document.location.origin + "/model/model.json";
 let modelReady = false;
@@ -80,24 +81,24 @@ const ExamplePage = class extends Component {
     }
 
     onData = (canvas, IMAGE_WIDTH, IMAGE_HEIGHT) => {
-        const preview = tf.fromPixels(canvas);
-        const normalized = preview.toFloat().div(tf.scalar(255));
+        const img = tf.fromPixels(canvas);
+        const normalized = img.toFloat().div(tf.scalar(255));
 
         // TODO could use model.inputLayers[0].batchInputShape here to get width and height
-        // // Resize the image to
-        // let resized = normalized;
-        // if (img.shape[0] !== 48 || img.shape[1] !== 48) {
-        //     const alignCorners = true;
-        //     resized = tf.image.resizeBilinear(
-        //         normalized, [48, 48], alignCorners);
-        // }
+        // Resize the image to expected model input size
+        let resized = normalized;
+        if (img.shape[0] !== 48 || img.shape[1] !== 48) {
+            const alignCorners = true;
+            resized = tf.image.resizeBilinear(
+                normalized, [48, 48], alignCorners);
+        }
 
-        const greyscale_image = normalized.mean(2);
+        const greyscale_image = resized.mean(2);
         const final_image = greyscale_image.expandDims(2);
 
         // TODO could use model.inputLayers[0].batchInputShape here (converting null to -1)
         // Reshape to fit batch input shape so we can pass it to predict.
-        const batched = final_image.reshape([-1,CANVAS_WIDTH,CANVAS_HEIGHT,1]);
+        const batched = final_image.reshape([-1,48,48,1]);
 
         if (this.debugCanvas) {
             tf.toPixels(final_image, this.debugCanvas);

@@ -26,6 +26,7 @@ export default class TheComponent extends Component {
                         (video) => {
                             this.video = video
                         }}
+                    id="video"
                 />
 
                 <canvas
@@ -34,6 +35,17 @@ export default class TheComponent extends Component {
                     ref={(canvas) => {
                         if (canvas) {
                             this.canvas = canvas;
+                        }
+                    }}
+                    id="canvas"
+                />
+
+                <canvas
+                    width={this.props.captureWidth}
+                    height={this.props.captureHeight}
+                    ref={(canvas) => {
+                        if (canvas) {
+                            this.croppedCanvas = canvas;
                         }
                     }}
                 />
@@ -66,8 +78,33 @@ export default class TheComponent extends Component {
             }
             // Make a copy of the current frame in the video on the canvas.
             context.drawImage(video, 0, 0, width, height);
-            this.props.onData && this.props.onData(canvas, width, height);
+            // this.props.onData && this.props.onData(canvas, width, height);
         }, this.props.captureRate)
+
+        var tracker = new tracking.ObjectTracker('face');
+        tracker.setInitialScale(4);
+        tracker.setStepSize(2);
+        tracker.setEdgesDensity(0.1);
+
+        tracking.track('#video', tracker, {});
+
+        var context = this.canvas.getContext('2d');
+
+        tracker.on('track', event => {
+            event.data.forEach(rect => {
+              context.strokeStyle = '#a64ceb';
+              context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+              context.font = '11px Helvetica';
+              context.fillStyle = "#fff";
+              context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+              context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+
+              // Get the cropped image
+              const img_data = context.getImageData(rect.x + 5, rect.y - 20, rect.width + 10, rect.height + 40);
+              this.croppedCanvas.getContext('2d').putImageData(img_data, rect.x, rect.y);
+              this.props.onData && this.props.onData(img_data, width, height);
+            });
+          });
     };
 
     start = () => {
