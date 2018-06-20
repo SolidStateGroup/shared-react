@@ -104,26 +104,18 @@ const ExamplePage = class extends Component {
         // Reshape to fit batch input shape so we can pass it to predict.
         const batched = final_image.reshape([-1,48,48,1]);
 
-        if (this.debugCanvas) {
-            tf.toPixels(final_image, this.debugCanvas);
-        }
-
         const prediction = model.predict(batched);
 
         this.setState({ready: false})
         getTopKClassesFromPrediction(prediction, 1)
             .then((res) => {
                 console.log(res[0]);
-                this.setState({ready: true})
+                this.setState({ready: true, topEmotion: res[0]})
             })
     };
 
-    componentDidMount() {
-
-    }
-
     render() {
-        const {ready} = this.state;
+        const {ready, topEmotion} = this.state;
         var data = [];
         if (emotionData) {
             for (var i = 0; i < 7; i++) {
@@ -170,9 +162,10 @@ const ExamplePage = class extends Component {
                     onReady={this.onReady}
                     start={true}
                 />
-                <canvas width={CANVAS_WIDTH}
-                    height={CANVAS_HEIGHT} ref={c => this.debugCanvas = c} />
-                <Chart type="horizontalBar" data={barChartData} options={barChartOptions} width="400" height="400" />
+                {topEmotion && topEmotion.className === 'happy' && topEmotion.probability >= 0.75 ? (
+                    <div className="laughing">You're laughing!</div>
+                ) : null}
+                <Chart type="horizontalBar" data={barChartData} options={barChartOptions} width="200" height="100" />
             </div>
         );
     }

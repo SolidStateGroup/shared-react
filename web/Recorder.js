@@ -39,21 +39,11 @@ export default class TheComponent extends Component {
                     }}
                     id="canvas"
                 />
-
-                <canvas
-                    width={this.props.captureWidth}
-                    height={this.props.captureHeight}
-                    ref={(canvas) => {
-                        if (canvas) {
-                            this.croppedCanvas = canvas;
-                        }
-                    }}
-                />
             </div>
         );
     }
 
-    capture = (interval) => {
+    capture = () => {
         if (this.interval) {
             clearInterval(this.interval);
         }
@@ -62,10 +52,14 @@ export default class TheComponent extends Component {
         let width,
             height;
 
+
+        var video_canvas = document.createElement('canvas');
+        video_canvas.width = this.props.captureWidth;
+        video_canvas.height = this.props.captureHeight;
         this.interval = setInterval(() => {
             if (!this.props.ready || !video.videoWidth)
                 return;
-            const context = canvas.getContext('2d');
+            const context = video_canvas.getContext('2d');
 
             if (!width) {
                 width = this.props.captureWidth || video.videoWidth;
@@ -78,7 +72,6 @@ export default class TheComponent extends Component {
             }
             // Make a copy of the current frame in the video on the canvas.
             context.drawImage(video, 0, 0, width, height);
-            // this.props.onData && this.props.onData(canvas, width, height);
         }, this.props.captureRate)
 
         var tracker = new tracking.ObjectTracker('face');
@@ -88,10 +81,13 @@ export default class TheComponent extends Component {
 
         tracking.track('#video', tracker, {});
 
-        var context = this.canvas.getContext('2d');
+        var context = canvas.getContext('2d');
+        var video_context = video_canvas.getContext('2d');
 
         tracker.on('track', event => {
             event.data.forEach(rect => {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+
               context.strokeStyle = '#a64ceb';
               context.strokeRect(rect.x, rect.y, rect.width, rect.height);
               context.font = '11px Helvetica';
@@ -100,8 +96,7 @@ export default class TheComponent extends Component {
               context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
 
               // Get the cropped image
-              const img_data = context.getImageData(rect.x + 5, rect.y - 20, rect.width + 10, rect.height + 40);
-              this.croppedCanvas.getContext('2d').putImageData(img_data, rect.x, rect.y);
+              const img_data = video_context.getImageData(rect.x + 5, rect.y - 20, rect.width + 10, rect.height + 40);
               this.props.onData && this.props.onData(img_data, width, height);
             });
           });
@@ -131,7 +126,7 @@ export default class TheComponent extends Component {
                 video.play();
                 video.onplay = () => {
                     this.props.onReady && this.props.onReady();
-                    this.capture(this.props.interval);
+                    this.capture();
                 };
 
             },
@@ -144,5 +139,5 @@ export default class TheComponent extends Component {
 }
 
 TheComponent.defaultProps = {
-    interval: 100
+    captureRate: 100
 };
