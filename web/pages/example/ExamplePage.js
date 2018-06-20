@@ -138,6 +138,7 @@ const ExamplePage = class extends Component {
             }]
         }
         const barChartOptions = {
+            responsive: false,
             scales: {
                 xAxes: [{
                     ticks: {
@@ -151,21 +152,25 @@ const ExamplePage = class extends Component {
             }
         }
         return (
-            <div className="container">
-                <Recorder
-                    captureWidth={CANVAS_WIDTH}
-                    captureHeight={CANVAS_HEIGHT}
-                    ready={ready}
-                    onData={this.onData}
-                    captureRate={100}
-                    onError={this.onError}
-                    onReady={this.onReady}
-                    start={true}
-                />
-                {topEmotion && topEmotion.className === 'happy' && topEmotion.probability >= 0.75 ? (
-                    <div className="laughing">You're laughing!</div>
-                ) : null}
-                <Chart type="horizontalBar" data={barChartData} options={barChartOptions} width="200" height="100" />
+            <div>
+                <div className="container">
+                    <Recorder
+                        captureWidth={CANVAS_WIDTH}
+                        captureHeight={CANVAS_HEIGHT}
+                        ready={ready}
+                        onData={this.onData}
+                        captureRate={100}
+                        onError={this.onError}
+                        onReady={this.onReady}
+                        start={true}
+                    />
+                    {topEmotion && topEmotion.className === 'happy' && topEmotion.probability >= 0.75 ? (
+                        <div className="laughing">You're laughing!</div>
+                    ) : null}
+                </div>
+                <div className="emotion-chart">
+                    <Chart type="horizontalBar" data={barChartData} options={barChartOptions} width="400" height="200" />
+                </div>
             </div>
         );
     }
