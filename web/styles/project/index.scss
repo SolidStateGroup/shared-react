@@ -6,12 +6,26 @@
 #canvas {
   position: absolute;
 }
-.laughing {
+.emotion-alert {
+  margin-top: 10px;
   font-size: 4em;
+  text-align: center;
+}
+.emoji {
+  font-size: 8em;
   text-align: center;
 }
 .emotion-chart {
   position: absolute;
   top: 0px;
   right: 0px;
+}
+.app-container {
+  margin-top: 50px;
+}
+body {
+  background: #fff;
+  padding-top: 30px;
+  font-family: $font-family;
+  font-weight: 200;
 }

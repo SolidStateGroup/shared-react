@@ -71,7 +71,8 @@ const ExamplePage = class extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ready: modelReady
+            ready: modelReady,
+            disableChart: true
         };
         if (!modelReady) {
             this.interval = setInterval(() => {
@@ -110,12 +111,21 @@ const ExamplePage = class extends Component {
         getTopKClassesFromPrediction(prediction, 1)
             .then((res) => {
                 console.log(res[0]);
-                this.setState({ready: true, topEmotion: res[0]})
+                this.setState({ready: true, topEmotion: res[0], lastReceived: Date.now()})
             })
     };
 
+    componentDidMount() {
+        setInterval(() => {
+            const noFaceDetected = this.state.lastReceived ? Date.now() - this.state.lastReceived > 500 : false;
+            if (noFaceDetected != this.state.noFaceDetected) {
+                this.setState({noFaceDetected});
+            }
+        }, 500);
+    }
+
     render() {
-        const {ready, topEmotion} = this.state;
+        const {ready, topEmotion, noFaceDetected} = this.state;
         var data = [];
         if (emotionData) {
             for (var i = 0; i < 7; i++) {
@@ -164,13 +174,79 @@ const ExamplePage = class extends Component {
                         onReady={this.onReady}
                         start={true}
                     />
-                    {topEmotion && topEmotion.className === 'happy' && topEmotion.probability >= 0.75 ? (
-                        <div className="laughing">You're laughing!</div>
-                    ) : null}
+                    {topEmotion && !noFaceDetected && topEmotion.className === 'happy' && (() => {
+                        if (topEmotion.probability >= 0.7) {
+                            return (
+                                <div>
+                                    <div className="emotion-alert">You're laughing!</div>
+                                    <div className="emoji">😆</div>
+                                </div>
+                            )
+                        } else if (topEmotion.probability >= 0.3) {
+                            return (
+                                <div>
+                                    <div className="emotion-alert">Are you about to laugh?!</div>
+                                    <div className="emoji">🤨</div>
+                                </div>
+                            )
+                        } else {
+                            return null;
+                        }
+                    })()}
+                    {topEmotion && !noFaceDetected && (() => {
+                        switch (topEmotion.className) {
+                            case "neutral":
+                                return (
+                                    <div>
+                                        <div className="emoji">😐</div>
+                                    </div>
+                                )
+                            case "sad":
+                                return (
+                                    <div>
+                                        <div className="emoji">☹️</div>
+                                    </div>
+                                )
+                            case "angry":
+                                return (
+                                    <div>
+                                        <div className="emoji">😡</div>
+                                    </div>
+                                )
+                            case "disgust":
+                                return (
+                                    <div>
+                                        <div className="emoji">😒</div>
+                                    </div>
+                                )
+                            case "fear":
+                                return (
+                                    <div>
+                                        <div className="emoji">😨</div>
+                                    </div>
+                                )
+                            case "surprise":
+                                return (
+                                    <div>
+                                        <div className="emoji">😯</div>
+                                    </div>
+                                )
+                            default:
+                                return null;
+                        }
+                    })()}
+                    {noFaceDetected && (
+                        <div>
+                            <div className="emotion-alert">Where have you gone?!</div>
+                            <div className="emoji">🧐</div>
+                        </div>
+                    )}
                 </div>
-                <div className="emotion-chart">
-                    <Chart type="horizontalBar" data={barChartData} options={barChartOptions} width="400" height="200" />
-                </div>
+                {!this.state.disableChart && (
+                    <div className="emotion-chart">
+                        <Chart type="horizontalBar" data={barChartData} options={barChartOptions} width="400" height="200" />
+                    </div>
+                )}
             </div>
         );
     }

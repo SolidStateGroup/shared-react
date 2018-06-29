@@ -52,37 +52,35 @@ export default class TheComponent extends Component {
         let width,
             height;
 
-
-        var video_canvas = document.createElement('canvas');
+        const video_canvas = document.createElement('canvas');
         video_canvas.width = this.props.captureWidth;
         video_canvas.height = this.props.captureHeight;
+        const video_context = video_canvas.getContext('2d');
         this.interval = setInterval(() => {
             if (!this.props.ready || !video.videoWidth)
                 return;
-            const context = video_canvas.getContext('2d');
 
             if (!width) {
                 width = this.props.captureWidth || video.videoWidth;
                 height = this.props.captureHeight || video.videoHeight;
                 // Setup a canvas with the same dimensions as the video.
-                context.width = width;
-                context.height = height;
+                video_context.width = width;
+                video_context.height = height;
                 this.setState({width, height})
 
             }
             // Make a copy of the current frame in the video on the canvas.
-            context.drawImage(video, 0, 0, width, height);
+            video_context.drawImage(video, 0, 0, width, height);
         }, this.props.captureRate)
 
-        var tracker = new tracking.ObjectTracker('face');
+        const tracker = new tracking.ObjectTracker('face');
         tracker.setInitialScale(4);
         tracker.setStepSize(2);
         tracker.setEdgesDensity(0.1);
 
         tracking.track('#video', tracker, {});
 
-        var context = canvas.getContext('2d');
-        var video_context = video_canvas.getContext('2d');
+        const context = canvas.getContext('2d');
 
         tracker.on('track', event => {
             event.data.forEach(rect => {
