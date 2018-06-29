@@ -254,8 +254,8 @@ const ExamplePage = class extends Component {
     onReady = () => {
 
     };
-    onError = () => {
-
+    onError = (err) => {
+        console.log(err)
     };
 };
 

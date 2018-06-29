@@ -87,14 +87,14 @@ export default class TheComponent extends Component {
               context.clearRect(0, 0, canvas.width, canvas.height);
 
               context.strokeStyle = '#a64ceb';
-              context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+              context.strokeRect(rect.x - 5, rect.y - 20, rect.width + 10, rect.height + 40);
               context.font = '11px Helvetica';
               context.fillStyle = "#fff";
               context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
               context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
 
               // Get the cropped image
-              const img_data = video_context.getImageData(rect.x + 5, rect.y - 20, rect.width + 10, rect.height + 40);
+              const img_data = video_context.getImageData(rect.x - 5, rect.y - 20, rect.width + 10, rect.height + 40);
               this.props.onData && this.props.onData(img_data, width, height);
             });
           });
@@ -102,7 +102,7 @@ export default class TheComponent extends Component {
 
     start = () => {
         const {video} = this;
-        if (!navigator.getMedia) {
+        if (!navigator.getUserMedia) {
             this.props.onError && this.props.onError("Your browser doesn't have support for the navigator.getUserMedia interface.");
         }
         navigator.getUserMedia(
