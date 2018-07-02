@@ -5,14 +5,20 @@
 }
 #canvas {
   position: absolute;
+  width: 180px;
+  height: 320px;
+}
+#video {
+  width: 180px;
+  height: 320px;
 }
 .emotion-alert {
   margin-top: 10px;
-  font-size: 4em;
+  font-size: 2em;
   text-align: center;
 }
 .emoji {
-  font-size: 8em;
+  font-size: 4em;
   text-align: center;
 }
 .emotion-chart {

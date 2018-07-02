@@ -7,8 +7,8 @@ import Recorder from '../../Recorder';
 import Chart from '../../Chart';
 
 // Face tracking only seems to work with a larger video (they use 320x240)
-const CANVAS_WIDTH = 320;
-const CANVAS_HEIGHT = 240;
+const CANVAS_WIDTH = 1080;
+const CANVAS_HEIGHT = 1920;
 
 const path = document.location.origin + "/model/model.json";
 let modelReady = false;

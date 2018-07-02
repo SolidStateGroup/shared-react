@@ -15,7 +15,6 @@ export default class TheComponent extends Component {
 
     render() {
         const {videoProps} = this.props;
-        const {width, height} = this.state;
         return (
             <div className='camera'>
                 <video
@@ -53,8 +52,8 @@ export default class TheComponent extends Component {
             height;
 
         const video_canvas = document.createElement('canvas');
-        video_canvas.width = this.props.captureWidth;
-        video_canvas.height = this.props.captureHeight;
+        video_canvas.width = canvas.clientWidth;
+        video_canvas.height = canvas.clientHeight;
         const video_context = video_canvas.getContext('2d');
         this.interval = setInterval(() => {
             if (!this.props.ready || !video.videoWidth)
@@ -70,13 +69,12 @@ export default class TheComponent extends Component {
 
             }
             // Make a copy of the current frame in the video on the canvas.
-            video_context.drawImage(video, 0, 0, width, height);
+            video_context.drawImage(video, 0, 0, canvas.clientWidth, canvas.clientHeight);
         }, this.props.captureRate)
 
+        // document.body.appendChild(video_canvas); // USEFUL FOR DEBUGGING PURPOSES
+
         const tracker = new tracking.ObjectTracker('face');
-        tracker.setInitialScale(4);
-        tracker.setStepSize(2);
-        tracker.setEdgesDensity(0.1);
 
         tracking.track('#video', tracker, {});
 
@@ -104,10 +102,11 @@ export default class TheComponent extends Component {
         const {video} = this;
         if (!navigator.getUserMedia) {
             this.props.onError && this.props.onError("Your browser doesn't have support for the navigator.getUserMedia interface.");
+            return;
         }
         navigator.getUserMedia(
             {
-                video: true
+                video: {width: this.props.captureHeight, height: this.props.captureWidth}
             },
             // Success Callback
             (stream) => {
