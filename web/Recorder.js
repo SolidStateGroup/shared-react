@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {isMobile} from 'react-device-detect';
 
 export default class TheComponent extends Component {
 
@@ -26,6 +27,7 @@ export default class TheComponent extends Component {
                             this.video = video
                         }}
                     id="video"
+                    style={{width: isMobile ? 180 : 320, height: isMobile ? 320 : 180}}
                 />
 
                 <canvas
@@ -37,6 +39,7 @@ export default class TheComponent extends Component {
                         }
                     }}
                     id="canvas"
+                    style={{width: isMobile ? 180 : 320, height: isMobile ? 320 : 180}}
                 />
             </div>
         );
