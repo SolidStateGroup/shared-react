@@ -1,5 +1,6 @@
 global.API = {
-  recordEvent: function (event) {
-      console.log(`Web event: ${event}`)
-  }
+    recordEvent(event) {
+        // eslint-disable-line
+        console.log(`Web event: ${event}`);
+    },
 };

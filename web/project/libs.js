@@ -2,7 +2,9 @@ window.React = require('react');
 window.ReactDOM = require('react-dom');
 window.render = require('react-dom').render;
 
+// eslint-disable-next-line
 const PropTypes = require('prop-types');
+
 window.Any = PropTypes.any;
 window.OptionalArray = PropTypes.array;
 window.OptionalBool = PropTypes.bool;
@@ -32,4 +34,15 @@ const range = require('lodash/range');
 const map = require('lodash/map');
 const cloneDeep = require('lodash/cloneDeep');
 const keyBy = require('lodash/keyBy');
-window._ = {each, filter, find, partial, findIndex, range, map,cloneDeep,keyBy};
+
+window._ = {
+    each,
+    filter,
+    find,
+    partial,
+    findIndex,
+    range,
+    map,
+    cloneDeep,
+    keyBy,
+};

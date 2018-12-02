@@ -1,36 +1,29 @@
 import React from 'react';
-import {Route, Link, Router, IndexRoute, Redirect, Switch} from 'react-router-dom';
+import { Route, Link, Router, Switch } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
+import createBrowserHistory from 'history/createBrowserHistory';
 import ExamplePage from '../pages/example/ExamplePage';
 import NotFoundPage from '../pages/NotFoundPage';
 
+// Examples
+
+
 window.Link = Link;
-
-//Examples
-
-import {hot} from 'react-hot-loader';
-
-
-import createBrowserHistory from 'history/createBrowserHistory';
 
 const history = createBrowserHistory();
 
-const TheComponent = class extends React.Component {
+const TheComponent = () => (
+    <Router history={history}>
+        <div>
+            <Switch>
+                <Route exact path="/" component={ExamplePage}/>
+                <Route exact path="*" component={NotFoundPage}/>
+            </Switch>
+        </div>
+    </Router>
+);
 
-    render() {
-        return (
-            <Router history={history}>
-                <div>
-                    <Switch>
-                        <Route exact path="/" component={ExamplePage}/>
-                        <Route exact path="*" component={NotFoundPage}/>
-                    </Switch>
-                </div>
-            </Router>
-        );
-    }
-};
-
+TheComponent.displayName = 'Router';
 TheComponent.propTypes = {};
 
-export default hot(module)(TheComponent)
-
+export default hot(module)(TheComponent);

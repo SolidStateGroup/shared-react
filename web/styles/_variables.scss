@@ -1,14 +1,14 @@
 //BASIC DEFAULTS
-$default-border-radius:4px;
-$default-padding:10px;
-$default-margin:10px;
+$default-border-radius: 4px;
+$default-padding: 10px;
+$default-margin: 10px;
 $grid-gutter-width-base: 20px !default;
 
 //FONTS
 $font-family: Futura, sans-serif;
 
 // COLORS
-$white:#fff;
+$white: #fff;
 
 $body-bg: #f9f9f9;
 $body-bg-alt: #f2f6f9;
@@ -16,28 +16,28 @@ $body-color: #838f9f !default;
 
 $brand-primary: rgb(98, 186, 229);
 $brand-secondary: rgb(225, 105, 53);
-$highlight-green: rgb(0,213,172);
-$select-green: rgb(157,216,114);
-$add-green: rgb(103,231,146);
+$highlight-green: rgb(0, 213, 172);
+$select-green: rgb(157, 216, 114);
+$add-green: rgb(103, 231, 146);
 
 $alert-danger-bg: rgb(234, 96, 96);
 $alert-danger-border: rgb(234, 96, 96);
 $alert-danger-text: rgb(255, 255, 255);
 
 //TYPE
-$text-blue-dark:#334153;
-$text-blue-default:#929ea4;
-$text-blue-light:#838F9F;
+$text-blue-dark: #334153;
+$text-blue-default: #929ea4;
+$text-blue-light: #838F9F;
 
-$text-grey-dark:#666;
-$text-grey-light:#BCBCBC;
+$text-grey-dark: #666;
+$text-grey-light: #BCBCBC;
 
 //NAVS
 $navbar-color: white;
 $navbar-bg: #22262e;
 
 //NAVS
-$toast-bg: rgba(255,255,255,1);
+$toast-bg: rgba(255, 255, 255, 1);
 $toast-color: #62bae5;
 
 // INPUT
@@ -72,7 +72,7 @@ $panel-heading-bg: #039be5;
 $panel-heading-color: white;
 
 //TABS
-$tab-inactive-color: darken(white,10);
+$tab-inactive-color: darken(white, 10);
 $tab-active-color: white;
 
 //SCAFFOLDING
@@ -92,4 +92,4 @@ $modal-header-border-width: 0;
 //TRANSITIONS
 $button-transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
 
-$facebook:#3B5998;
+$facebook: #3B5998;
